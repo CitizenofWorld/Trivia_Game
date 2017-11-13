@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+.game-board{
+  width: 80%;
+  margin: 0 auto;
+}
+
 .row-{
   content: "";
   clear: both;
@@ -10,12 +15,68 @@
   height: 150px;
   width: 100%;
   margin: 20px;
+  text-align: center;
 }
 
 
 .col- {
-    float: left;
-    padding: 15px;
-    border: 1px solid black;
-    border-radius: 5px;
+  width: 30%;
+  height: 150px;
+  float: left;
+  padding: 15px;
+  border: 1px solid red;
+  border-radius: 40px;
+  margin: 10px;
+  text-align: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
+
+.card-img{
+  background-image: url("http://classes.design.ucla.edu/Fall08/157A/wp-content/uploads/2008/10/trivia-card.png");
+}
+
+/*Flipping the card*/
+.card-container {
+  perspective: 1000px;
+}
+
+
+.card-container:active .flipper, .card-container.flip .flipper {
+  transform: rotateY(180deg);
+}
+/*flip speed*/
+.flipper{
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/*hide back of pane during swap*/
+.front, .back{
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/*front pane placed above back pane*/
+.front {
+  z-index: 2;
+}
+
+/*back initially hidden 
+*/
+.back{
+  transform: rotateY(180deg);
+}
+
+
+
+
+
+
+
+
+
+
