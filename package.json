@@ -9,7 +9,6 @@
     "react-dom": "^16.1.0",
     "react-scripts": "1.0.17",
     "underscore": "^1.8.3",
-    "z-index": "0.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
