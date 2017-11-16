@@ -16,10 +16,10 @@ class App extends Component {
       quizQuestions: quizQuestions,
       turnCounter: 0,
       players: [{
-        name:"Jess",
+        name:"Player 1",
         score: 0,
       }, {
-        name:"Fiona",
+        name:"Player 2",
         score: 0,
       }]
 
