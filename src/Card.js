@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactCardFlip from 'react-card-flip';
-import quizQuestions from './api/quizQuestions';
+// import quizQuestions from './api/quizQuestions';
 
 
 
@@ -11,9 +11,9 @@ export default class Card extends React.Component  {
     this.checkAnswer = this.checkAnswer.bind(this);
     this.state = {
       isFlipped: false,
-      hidden: 'hidden',
-      show: 'show'
-
+      hidden: "",
+      show: "",
+      isCorrect: false
     };
   }
 
@@ -24,35 +24,45 @@ export default class Card extends React.Component  {
   }
 
 
-  checkAnswer(event){
-    var clickedAnswer = event.target.innerHTML
-    const answerSliced = clickedAnswer.split(" ").slice(1).join(" ")
-    const correctCardAnswer = this.props.correctAnswer
-      if (correctCardAnswer === answerSliced){
-       this.setState({ isFlipped: !this.state.isFlipped });
-      }else{
-        this.setState({ isFlipped: !this.state.isFlipped });
-      }
+  hiddenToFalse(){
+
+    this.setState({ hidden: this.state.hidden })
+  }
+
+  showToTrue(){
+     this.setState({ show: !this.state.show })
+  }
+
+  checkAnswer(event){      // if (correctCardAnswer === answerSliced){
+
+    if (event.target.innerHTML === this.props.correctAnswer) {
+      this.setState({ isCorrect: true });
+      // todo addpoint
+    } else {
+      this.setState({ isCorrect: false });
+    }
+
+    this.setState({ isFlipped: !this.state.isFlipped });
  }
 
   render() {
     return (
     <div className="card">
+      <div>cover</div>
       <ReactCardFlip isFlipped={this.state.isFlipped}>
-      
+
           <div className="card-text" key="front">
              <h4> {this.props.question} </h4>
              <ul>
-              <li onClick={this.checkAnswer} > {this.props.choices[0]}</li>
-              <li onClick={this.checkAnswer} > {this.props.choices[1]}</li>
-              <li onClick={this.checkAnswer} > {this.props.choices[2]}</li>
+              <li onClick={this.checkAnswer}>{this.props.choices[0]}</li>
+              <li onClick={this.checkAnswer}>{this.props.choices[1]}</li>
+              <li onClick={this.checkAnswer}>{this.props.choices[2]}</li>
              </ul>
           </div>
 
 
         <div className="card-text" key="back">
-          <p className="hidden"> You are correct! </p>
-          <p className="hidden"> Incorrect </p>
+          <p className={this.state.hidden}>{this.state.isCorrect ? 'correct' : 'incorrect'}</p>
           <div><button onClick={this.handleClick}>Flip Card</button></div>
         </div>
 

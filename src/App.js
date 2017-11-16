@@ -41,6 +41,12 @@ class App extends Component {
 
   }
 
+  addPoint() {
+    var players = this.state.players
+    players[0].score = ++players[0].score
+    this.setState({ players: players })
+  }
+
   render() {
       const { quizQuestions } = this.state
       const { players } = this.state
@@ -64,7 +70,7 @@ class App extends Component {
                           choices={ _.each( content.answers, function(answer){ 
                                 return answer
                           })}
-
+                          correctHandler={this.addPoint}
                           correctAnswer={content.correctAnswer} />
           })}
         </div>
