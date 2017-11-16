@@ -42,6 +42,8 @@
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
+      background-color: #b3d9ff;
+    margin-top: 20px;
 }
 
 .card {
@@ -55,6 +57,8 @@
   border: 1px solid black;
   border-radius: 30px;
   height: 200px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.30);
+  background-color: white;
 
 }
 
@@ -67,13 +71,18 @@ li {
   margin: 5px;
 }
 
-  .hidden{
-    display: none;
-  }
+header .flex-container {
+  background-color: #003366;
+}
 
-  .show{
-    display: block;
-  }
+.cover{
+  position: absolute;
+  left: 0;
+  top: -2px;
+  height: 210px;
+  width: 100%;
+  border-radius: 30px;
+}
 
 /* .fade-enter {
     opacity: 0;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Card from './Card';
 import Scoreboard from './Scoreboard';
 import quizQuestions from './api/quizQuestions';
@@ -12,10 +11,10 @@ class App extends Component {
 
   constructor(props){
     super(props)
+    this.addPoint = this.addPoint.bind(this)
     this.state = {
-      counter: 0,
-      questionId: 1,
       quizQuestions: quizQuestions,
+      turnCounter: 0,
       players: [{
         name:"Jess",
         score: 0,
@@ -41,27 +40,20 @@ class App extends Component {
 
   }
 
-  addPoint() {
-    var players = this.state.players
-    players[0].score = ++players[0].score
-    this.setState({ players: players })
-  }
-
   render() {
       const { quizQuestions } = this.state
       const { players } = this.state
+      var { turnCounter } = this.state
 
     return (
       <div className="App">
        <div className="game-board">
-
-       <div className="timer">
-       </div>
-
+        <header>
         <div className="flex-container">
           <Scoreboard player={players[0]} addPoint={() => this.addPoint(0) } resetTimer={() => this.resetTimer(0)}  />
           <Scoreboard player={players[1]} addPoint={() => this.addPoint(1) } resetTimer={() => this.resetTimer(1)}  />
         </div>
+        </header>
 
         <div className=" flex-container">
           {quizQuestions.map((content, index) => {
@@ -70,8 +62,7 @@ class App extends Component {
                           choices={ _.each( content.answers, function(answer){ 
                                 return answer
                           })}
-                          correctHandler={this.addPoint}
-                          correctAnswer={content.correctAnswer} />
+                          correctAnswer={content.correctAnswer}  />
           })}
         </div>
 
