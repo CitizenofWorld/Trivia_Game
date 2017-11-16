@@ -67,6 +67,12 @@ button {
   cursor: pointer;
 }
 
+button:hover{
+  background-color: lightblue;
+  border-radius: 10px;
+  transition: all 0.1s ease;
+}
+
 li {
   list-style: none;
   margin: 0px;
