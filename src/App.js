@@ -1,89 +1,74 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Card from './Card';
+import Scoreboard from './Scoreboard';
+import quizQuestions from './api/quizQuestions';
 import './App.css';
-import './Card.css';
 
-
-
-const triviaQuestions = [{
-  question: 'what song by Michael Jackson contains the lyrics: Annie are you OK?',
-  answer: 'Smooth Criminal'
-},{
-  question: 'What year was Facebook founded?',
-  answer: "2004"
-},{
-  question: "Callisto is the name of the moon orbiting what planet?",
-  answer: "Jupiter"
-},{
-  question: "Who painted the Sistine Chapel?",
-  answer: "Michelangelo"
-}
-]
+var _ = require('underscore');
 
 
 class App extends Component {
 
   constructor(props){
     super(props)
-    this.clickHandler = this.clickHandler.bind(this)
     this.state = {
-      question: triviaQuestions[0].question,
-      answer:triviaQuestions[0].answer
+      counter: 0,
+      questionId: 1,
+      quizQuestions: quizQuestions,
+      players: [{
+        name:"Jess",
+        score: 0,
+      }, {
+        name:"Fiona",
+        score: 0,
+      }]
+
     }
   }
 
 
-  clickHandler(event){
-     this.classList.toggle('flip')
+  addPoint(index){
+    var players = this.state.players
+    players[index].score += 1
+    this.setState({ players: players })
   }
 
-  timer() {
+  resetTimer(index){
+    var players = this.state.players
+    players[index].score = 0
+    this.setState({ players: players })
 
   }
-
-
-
-
 
   render() {
+      const { quizQuestions } = this.state
+      const { players } = this.state
 
     return (
       <div className="App">
-      <div className="game-board">
-       <div className="row- 2 players">
-        <div className="col- 1 player- 1">PLAYER 1</div>
-        <div className="col- 1 player- 2">PLAYER 2</div>
+       <div className="game-board">
+
+       <div className="timer">
        </div>
-       <div className="row- 1 scoreboard">SCOREBOARD</div>
 
-        <div className="row- 3">
-
-          <div onClick={this.clickHandler} className="col- 1 card-container">
-            <div className="flipper">
-              <div className="front card-img">
-              </div>
-              <div className="back">
-                {this.state.question}
-              </div>
-            </div>
-            </div>
-
-
-          <div className="col- 2 card-img"></div>
-          <div className="col- 3 card-img"></div>
+        <div className="flex-container">
+          <Scoreboard player={players[0]} addPoint={() => this.addPoint(0) } resetTimer={() => this.resetTimer(0)}  />
+          <Scoreboard player={players[1]} addPoint={() => this.addPoint(1) } resetTimer={() => this.resetTimer(1)}  />
         </div>
 
-        <div className="row- 4">
-          <div className="col- 1 card-img"></div>
-          <div className="col- 2 card-img"></div>
-          <div className="col- 3 card-img"></div>
+        <div className=" flex-container">
+          {quizQuestions.map((content, index) => {
+            return <Card key={ index } 
+                          question={content.question} 
+                          choices={ _.each( content.answers, function(answer){ 
+                                return answer
+                          })}
+
+                          correctAnswer={content.correctAnswer} />
+          })}
         </div>
 
-        <div className="row- 5">
-          <div className="col- 1 card-img"></div>
-          <div className="col- 2 card-img"></div>
-          <div className="col- 3 card-img"></div>
-        </div>
         </div>
       </div>
     );

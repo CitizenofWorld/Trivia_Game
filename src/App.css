@@ -3,7 +3,7 @@
 }
 
 .game-board{
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -34,48 +34,77 @@
 
 .card-img{
   background-image: url("http://classes.design.ucla.edu/Fall08/157A/wp-content/uploads/2008/10/trivia-card.png");
-}
-
-/*Flipping the card*/
-.card-container {
-  perspective: 1000px;
-}
-
-
-.card-container:active .flipper, .card-container.flip .flipper {
-  transform: rotateY(180deg);
-}
-/*flip speed*/
-.flipper{
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
-}
-
-/*hide back of pane during swap*/
-.front, .back{
-  backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/*front pane placed above back pane*/
-.front {
   z-index: 2;
 }
 
-/*back initially hidden 
-*/
-.back{
-  transform: rotateY(180deg);
+.flex-container{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
+.card {
+  width: 30%;
+  height: 200px;
+  margin: 10px;
+  text-align: center;
+}
 
+.card-text{
+  border: 1px solid black;
+  border-radius: 30px;
+  height: 200px;
 
+}
 
+button {
+  margin: 10px;
+}
 
+li {
+  list-style: none;
+  margin: 5px;
+}
 
+  .hidden{
+    display: none;
+  }
+
+  .show{
+    display: block;
+  }
+
+/* .fade-enter {
+    opacity: 0;
+  }
+
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out 0.3s;
+  }
+
+  .fade-leave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+  }
+
+  .fade-leave.fade-leave-active {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .fade-appear {
+    opacity: 0;
+  }
+
+  .fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }*/
 
 
 
