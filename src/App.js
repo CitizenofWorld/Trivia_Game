@@ -5,7 +5,7 @@ import Scoreboard from './Scoreboard';
 import quizQuestions from './api/quizQuestions';
 import './App.css';
 
-var _ = require('underscore');
+
 
 
 class App extends Component {
